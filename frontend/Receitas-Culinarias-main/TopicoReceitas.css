@@ -1,0 +1,163 @@
+body{
+    margin: 0;
+    padding: 0;
+}
+
+.cabeça{
+    margin-top: 50px;
+}
+
+.titulo-receita-ind {
+    width: 100%;
+    text-align: center;
+    font-family: fantasy;
+    color: #D51b21;
+    font-size: 30pt;
+    margin-bottom: 40px;
+}
+
+.informacoes-receita-ind {
+    display: flex;
+    justify-content: space-around; 
+    align-items: baseline;
+    width: 80%; 
+    margin: auto;
+}
+
+#avaliacao {
+    display: flex;
+    align-items: baseline;
+}
+
+.t1-preparo, #avaliacao {
+    color: #FF880C;
+    font-family: sans-serif;
+    font-size: 14pt;
+}
+
+#t2-preparo {
+    color: #D51b21;
+    font-family: sans-serif;
+}
+
+#comentario {
+    font-size: 10pt;
+    margin-left: 5px;
+}
+
+.botao_receita {
+    margin-left: 20px; 
+}
+
+.imagem-receita-ind{
+    margin: 30px auto;
+    width: 80%;
+}
+
+.carousel-inner{
+    height: 500px;
+}
+
+.passo-a-passo h2{
+    background-color: #FF880C;
+    padding: 10px;
+    align-items: center;
+    text-align: center;
+    margin-top: 60px;
+    color: white;
+    font-family: sans-serif;
+    font-weight: bold;
+}
+
+.ingredientes{
+    columns: 2;
+    column-gap: 100px;
+}
+
+ul{
+    width: 60%;
+    margin: auto;
+    text-decoration: none;
+    font-family: sans-serif;
+    margin-top: 20px;
+    font-weight: bold;
+    font-size: 14pt;
+}
+
+li {
+    margin-bottom: 10px; 
+}
+
+.preparo {
+    position: relative;
+    padding-bottom: 10px; /* Adiciona espaço entre o item e a linha */
+    margin-bottom: 10px;  /* Espaçamento entre as linhas */
+}
+
+.preparo::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px; /* Espessura da linha */
+    background-color:  rgba(213, 27, 33, 0.3); /* Cor da linha */
+}
+
+#preparo{
+    background-color: #D51B21;
+}
+
+.publicacao{
+    color: gray;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px auto;
+}
+
+
+
+/* Estilos para ingredientes e modo de preparo lado a lado com linha vertical */
+.instrucao {
+    display: flex;
+    justify-content: space-between; /* Espaço entre os dois elementos */
+
+    position: relative; /* Necessário para o pseudo-elemento */
+}
+
+.passo-a-passo {
+    flex: 1; /* Cada um ocupa 50% do espaço */
+    margin: 10px;
+    position: relative;
+    
+}
+
+.passo-a-passo ul {
+    padding: 0;
+}
+
+.passo-a-passo ul li {
+    padding: 5px 0;
+    font-family: sans-serif;
+}
+
+h2 {
+    color: white;
+    padding: 10px;
+    font-size: 24px;
+}
+
+/* Adicionando a linha vertical */
+.instrucao::before {
+    content: '';
+    position: absolute;
+    top: 100px;
+    bottom: 0;
+    left: 50%;
+    width: 2px;
+    background-color: gray; /* Cor da linha */
+    opacity: 0.4;
+    height: 90%;
+    margin: auto;
+}

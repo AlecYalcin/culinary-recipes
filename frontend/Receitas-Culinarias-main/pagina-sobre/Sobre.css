@@ -1,0 +1,27 @@
+.cozinhando{
+    width: 400px;
+    height: 300px;
+    padding: 15px;
+}
+.equipe{
+    width: 400px;
+    height: 300px;
+}
+#um{
+    background-color: aquamarine;
+    height: 300px;
+    padding: 10px;
+}
+.dois{
+    width: 600px;
+    height: 300px;
+    font-family: sans-serif;
+}
+.um{
+    width: 370px;
+}
+img{
+    width: 370px;
+    height: 300px;
+    font-family: sans-serif;
+}

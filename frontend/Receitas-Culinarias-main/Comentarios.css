@@ -1,0 +1,88 @@
+
+.container-comentario {
+    width: 100%;
+    margin: 0 auto;
+    padding-top: 100px;
+}
+
+.comentario-ind {
+    background-color: #D51B21;
+    width: 100%; 
+    
+}
+
+.comentario-ind h2 {
+    color: white;
+    font-family: sans-serif;
+    font-weight: bold;
+    font-size: 36px;
+    text-align: left;
+    width: 80%;
+    margin: auto;
+}
+
+
+#total-comentarios {
+    font-family: sans-serif;
+    color: #ff880c;
+    font-weight: bold;
+    width: 80%;
+    margin: 20px auto;
+    font-size: 20px;
+}
+
+
+hr {
+    width: 80%;
+    margin: auto;
+    border: none;
+    height: 1px;
+    background-color:rgb(194, 191, 191);;
+
+}
+
+
+.body-coment {
+    display: flex;
+    align-items: center;
+    margin: auto;
+    border-bottom: 1px solid rgb(120, 120, 120, 0.2);;
+    padding-bottom: 15px;
+    width: 80%;
+}
+
+#user {
+    width: 150px;
+    display: inline-block;
+    text-align: center;
+    align-items: center;
+    margin-right: 20px;
+}
+
+#user i {
+    font-size: 50px;
+    margin-right: 10px;
+    color: rgb(120, 120, 120);
+}
+
+#user p {
+    font-size: 16px;
+    font-weight: bold;
+    color: rgb(120, 120, 120);
+    margin: 0;
+}
+
+
+.body-coment p {
+    font-size: 16px;
+    font-weight: bold;
+    color: black;
+    margin: 30px;
+
+}
+
+.date {
+    font-size: 12px;
+    color: rgb(120, 120, 120);
+    margin-left: auto;
+}

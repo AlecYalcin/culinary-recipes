@@ -1,0 +1,25 @@
+.rodape{
+    padding: 20px; /* Adiciona um pouco de espaço interno */
+    text-align: center;
+    
+}
+.informacoes{
+    display: inline-block;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin-top: 100px;
+    margin-bottom: 50px;
+    color: #D51B21;
+   
+}
+
+.problema{
+    margin-bottom: 50px;
+    font-size: 24pt;
+    
+}
+
+.contato{
+    font-family: sans-serif;
+}

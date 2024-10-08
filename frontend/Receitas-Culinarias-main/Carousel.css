@@ -1,0 +1,50 @@
+body{
+    margin: 0;
+    padding: 0;
+}
+
+
+h5 {
+    margin-top: 10px;
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+    background-color: #FF880C; /* Cor de fundo laranja */
+    border-radius: 50%; /* Para deixar as setas redondas */
+    width: 40px; /* Largura das setas */
+    height: 40px; /* Altura das setas */
+    opacity: 1;
+    top: 50%; /* Posicionar no meio verticalmente */
+    transform: translateY(-50%); /* Ajustar para centralizar corretamente */
+}
+
+
+.carrosel{
+    height: 200px;
+    border-bottom: 2px solid rgba(213, 27, 33, 0.3); /* mesma cor vermelha, so mudei pra botar opacidade*/
+}
+
+.receitas{
+    height: 200px;
+    text-align: center;
+    align-items: center;
+}
+
+.foto-receita-carrosel{
+    height: 100px;
+}
+
+.avaliacao{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.title{
+    color: #FF880C;
+    margin-bottom: 20px;
+    margin-left: 40px;
+    display: flex;
+    justify-content: left;
+    text-align: left;
+}
+

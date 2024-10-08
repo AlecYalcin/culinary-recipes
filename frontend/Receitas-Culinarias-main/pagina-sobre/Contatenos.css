@@ -1,0 +1,23 @@
+#tres{
+    background-color: #FF880C;
+    font-family: sans-serif;
+    color: aliceblue;
+}
+#quatro{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+   
+}
+.cinco{
+    width: 100px;
+    font-size: medium;
+    font-family: sans-serif;
+    
+}
+.imagem{
+    width: 100px;
+    height: 100px;
+}
