@@ -9,3 +9,17 @@ Utilizando React, as páginas da aplicação foram produzidas utilizando Boostra
 # Back-end
 
 Utilizando Laravel, a aplicação foi produzida no formato duplo de aplicação de dados, tendo um banco de dados local MySQL e uma integração com API Online. Ou seja, esse site deve ser utilizado com alguma conexão a internet.
+
+## Laravel
+
+### Inicializar Servidor
+
+> `php artisan serve`
+
+### Criar Migrações
+
+> `php artisan make:migrations`
+
+### Migrar Dados
+
+> `php artisan migrate`
