@@ -17,9 +17,10 @@ return new class extends Migration
             $table->id();
             $table->foreignId(column:'usuario_id')->constrained()->onDelete(action: 'cascade');
             $table->string(column: 'titulo');
-            $table->string(column: 'ingredientes');
-            $table->string(column: 'modo_de_preparo');
+            $table->text(column: 'ingredientes');
+            $table->text(column: 'modo_de_preparo');
             $table->string(column: 'tempo_de_preparo');
+            $table->binary(column: 'imagem');
             $table->timestamps();
         });
     }

@@ -16,10 +16,9 @@ return new class extends Migration
         Schema::create(table: 'usuarios', callback: function (Blueprint $table): void {
             $table->id();
             $table->string(column: 'nome');
-            $table->string(column: 'matricula')->unique();
+            $table->string(column: 'matricula')->nullable()->unique();
             $table->string(column: 'email')->unique();
             $table->string(column: 'senha');
-            $table->rememberToken();
             $table->timestamps();
         });
     }

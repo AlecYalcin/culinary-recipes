@@ -18,7 +18,7 @@ return new class extends Migration
             $table->foreignId(column: 'receita_id')->constrained()->onDelete(action: 'cascade'); // Chave estrangeira para receitas            
             // Definindo as chaves primárias compostas
             $table->primary(columns: ['usuario_id', 'receita_id']);
-            $table->unsignedTinyInteger(column: 'estrelas');
+            $table->enum(column: 'estrelas', allowed: ['1', '2','3','4','5']);
             $table->timestamps();
         });
     }
