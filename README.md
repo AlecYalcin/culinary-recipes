@@ -30,7 +30,27 @@ Após colocar os dados das tabelas desejadas nas migrações, o comando abaixo s
 
 ## Banco de Dados
 
-O banco de dados é feito em MySQL utilizando as Migrations do Laravel. Esse é composto por uma lógica simples de página de receitas, mas eficiente e muito bem pensada.
+O banco de dados é feito em MySQL utilizando as Migrations do Laravel. Esse é composto por uma lógica simples de página de receitas, mas eficiente e muito bem pensada. Ele utiliza API REST para realizar a conversão de dados do MySQL para a WEB.
+
+### Model
+
+O modelo é necessário para estabelecer os tipos de dados necessários. Ele também cria as regras de proteçẽos de dados como senhas de usuário. Comando para a criação de modelos:
+
+> `php artisan make:model`
+
+### Controller
+
+O controller é responsável por estabelecer a conexão entre o modelo e rotas, sendo a ponte entre o banco de dados relacional e o NoSQL (API). ELe precisa ser do tipo resource para realizar as operações em um padrão pré-estabelecido, mas controladores normais também tendem a funcionar. Comando para a criação de controllers:
+
+> `php artisan make:controller -resource`
+
+### Route
+
+Define os endereços que poderão ser acessados pelos usuários, para verificar todas as rotas basta:
+
+> `php artisan route:list`
+
+## Tipos de Dados
 
 ### Usuários
 
