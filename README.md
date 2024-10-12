@@ -56,6 +56,12 @@ Define os endereços que poderão ser acessados pelos usuários, para verificar 
 
 Tabela que represente as pessoas que usarão o sistema. Ele possui integridade simples para que pessoas comuns possam se cadastrar mas usuários do SUAP possam integrar suas contas.
 
+#### Perguntas
+
+1. Por que a senha do usuário não é devoldida e no banco facilmente visível?
+
+- Questão inicial de segurança, para mudar isso só ir no arquivo Usuario.php em models e tirar o $hidden. Mas a questão mais segura mesmo é aplicar uma criptografia.
+
 > Contêm: Id, Nome, Matrícula, Email, Senha
 
 ### Receitas
@@ -64,14 +70,40 @@ A fonte de informação do site. Cada usuário pode publicar diversas receitas e
 
 > Contêm: Id, Usuario_id, Título, Ingredientes, Modo de Preparo, Tempo de Preparo e Imagem
 
+#### Perguntas
+
+1. Por que essa tabela tem uma migração a mais para alterar somente um campo? (Imagem)
+
+- O campo 'binary' padrão de campos de tabela para Laravel é, em MySQL, o condizente a um tipo chamado 'blob', esse tipo de dado é conhecido por armazenar arquivos binários. Imagens não podem ser lidas como textos ou números, então são salvas em seu tipo 'original'. No entanto, o blob tem uma limitação de bytes, então é preciso aplicar uma mudança para longblob. E porquê isso não é feito antes? Por algum motivo o Laravel não permite a criação do campo Imagem se for feita na mesma migração, por isso outra.
+
+2. Por que a API não está retornando a imagem?
+
+- O campo imagem é um binário, se retornado ele será formatado em um tipo json textual, e nesse momento ele ganha um monte de caracteres sem sentindo (normalmente o computador reconhece como um tipo de caixa com '[?]') e acarreta em um erro de UTF-8, não é que há problema no banco ou na requuisição, e sim nesse detalhe, pois a imagem precisará passar por uma transformação mais tarde.
+
 ### Comentários
 
 Um elogio, uma crítica, observação ou dicas são sempre bem vindas por outros usuários em suas receitas. O sistema de comentários serve para que usuários possam interagir entre sí através das receitas publicadas.
 
 > Contêm: Usuario_id, Receita_id, Texto
 
+#### Perguntas
+
+1. Por que no 'Models' de Comentario.php há funçoes adicionais?
+
+- Nativamente o Laravel não aceita chaves compostas (ou seja, que tenham dois atributos) e não há funções que leiam isso. Então é preciso fazer um tipo de filtro com a query do banco de dados, mas ao fazer isso e utilizar o método $comentario->save() é retornado um erro. Isso acontece pois o Laravel não consegue reconhecer sozinho duas chaves, então há um @override no método. O código foi tirado desse link: https://github.com/laravel/framework/issues/5355#issuecomment-161376267
+
+2. Por que só é permitido um comentário por Usuário em Post?
+
+- Isso deve ser decidido e trabalhado com mais detalhes, mas é uma questão de escolha mesmo, se o professor quiser alterar serão feitas as devidas mudanças.
+
 ### Avaliações
 
 Uma avaliação diz o quanto aquela receita foi útil, saborosa, informativa, pouco detalhada... um usuário faz uma avaliação com o objetivo de informar outros sobre a qualidade da receita.
 
 > Contêm: Usuario_id, Receita_id, Estrelas
+
+#### Perguntas
+
+1. Por que no 'Models' de Avaliacao.php há funçoes adicionais?
+
+- Mesmo motivo do Comentário só acessar a seção perguntas dele.
