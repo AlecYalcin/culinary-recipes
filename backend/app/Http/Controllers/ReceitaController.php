@@ -32,7 +32,6 @@ class ReceitaController extends Controller
     public function update(Request $request, $id)
     {
         $receita = Receita::findOrFail($id);
-        $imagem = $request->file('imagem') ? file_get_contents($request->file('imagem')->getPathname()) : $receita->imagem;
         $receita->update($request->all());
     }
 
