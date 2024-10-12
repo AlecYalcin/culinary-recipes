@@ -3,6 +3,19 @@ body{
     padding: 0;
 }
 
+.container{
+    padding: 0;
+    margin: 20px auto;
+}
+
+.receitas{
+    margin-left: 30px;
+    margin-right: 30px;
+}
+
+.carousel-control-prev{
+    margin-right: 200px;
+}
 
 h5 {
     margin-top: 10px;
@@ -21,6 +34,7 @@ h5 {
 
 
 .carrosel{
+    
     height: 200px;
     border-bottom: 2px solid rgba(213, 27, 33, 0.3); /* mesma cor vermelha, so mudei pra botar opacidade*/
 }
@@ -36,7 +50,7 @@ h5 {
 }
 
 .avaliacao{
-    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-family: sans-serif;
 }
 
 .title{
