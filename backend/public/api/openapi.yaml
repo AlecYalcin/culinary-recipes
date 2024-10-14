@@ -1,0 +1,496 @@
+openapi: "3.0.1"
+info:
+  title: Receitas Culinarias
+  description: Aplicação de Receitas Culinárias
+    Um website de receitas culinárias é uma aplicação em que usuários divulgam suas receitas para outros usuários da rede.
+    Esses receitas possuem título, descrição, ingredientes, modo de preparo, tempo de preparo e uma imagem correspondente.
+    As receitas também podem ser avaliadas pelos usuários, com estrelas de 1 a 5, o que aparece é a média das avaliações.
+    As receitas podem ser comentadas por outros usuários, para construir uma feedback da receita ao dono da receita.
+    Nese versão, há cadastro de todas as entidades com suporte geral, mas não há segurança de dados.
+  version: "1.0"
+servers:
+  - url: http://{host}:{porta}/api
+    variables:
+      host:
+        default: localhost
+      porta:
+        default: "8000"
+
+paths:
+  /usuario:
+    get:
+      operationId: UsuarioIndex
+      summary: Retornar todos os usuários
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                minItems: 0
+                items:
+                  $ref: "#/app/models/Usuario"
+    post:
+      operationId: UsuarioStore
+      summary: Criar um novo usuário
+
+      requestedBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                nome:
+                  type: string
+                matricula:
+                  type: string|null
+                email:
+                  type: string
+                senha:
+                  type: string
+      responses:
+        "201":
+          description: Usuário Criado
+  /usuario/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        type: int
+
+    get:
+      operationId: UsuarioShow
+      summary: Acessar informações de usuário
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  nome:
+                    type: string
+                  matricula:
+                    type: string|null
+                  email:
+                    type: string
+        404:
+          description: Usuário não encontrado.
+
+    patch:
+      operationId: UsuarioUpdate
+      summary: Alterar informações de usuário
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                nome:
+                  type: string|null
+                email:
+                  type: string|null
+                matricula:
+                  type: string|null
+      responses:
+        200:
+          description: OK
+        401:
+          description: Houve um erro ao alterar as informações.
+        404:
+          description: Usuário não encontrado.
+
+    delete:
+      operationId: UsuarioDestroy
+      summary: Apagar usuário
+      responses:
+        200:
+          description: OK
+        404:
+          description: Usuário não encontrado.
+
+  /receita:
+    get:
+      operationId: ReceitaIndex
+      summary: Retornar todas as Receitas
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                minItems: 0
+                items:
+                  $ref: "#/app/models/Receita"
+    post:
+      operationId: ReceitaStore
+      summary: Criar uma nova receita
+
+      requestedBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                usuario_id:
+                  type: int
+                titulo:
+                  type: string
+                ingredientes:
+                  type: string
+                modo_de_preparo:
+                  type: string
+                tempo_de_preparo:
+                  type: string
+                image:
+                  type: file
+      responses:
+        "201":
+          description: Receita Criada
+  /receita/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        type: int
+
+    get:
+      operationId: ReceitaShow
+      summary: Acessar informações de Receita
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  usuario_id:
+                    type: int
+                  titulo:
+                    type: string
+                  ingredientes:
+                    type: string
+                  modo_de_preparo:
+                    type: string
+                  tempo_de_preparo:
+                    type: string
+                  image:
+                    type: file
+        404:
+          description: Receita não encontrada.
+
+    patch:
+      operationId: ReceitaUpdate
+      summary: Alterar informações de Receita
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                titulo:
+                  type: string|null
+                ingredientes:
+                  type: string|null
+                modo_de_preparo:
+                  type: string|null
+                tempo_de_preparo:
+                  type: string|null
+                image:
+                  type: file|null
+      responses:
+        200:
+          description: OK
+        401:
+          description: Houve um erro ao alterar as informações.
+        404:
+          description: Receita não encontrada.
+
+    delete:
+      operationId: ReceitaDestroy
+      summary: Apagar Receita
+      responses:
+        200:
+          description: OK
+        404:
+          description: Receita não encontrado.
+
+  /avaliacao:
+    get:
+      operationId: AvaliacaoIndex
+      summary: Retorna todas as avaliações
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                minItems: 0
+                items:
+                  $ref: "#/app/models/Avaliacao"
+    post:
+      operationId: AvaliacaoStore
+      summary: Criar uma nova avaliação
+
+      requestedBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                usuario_id:
+                  type: int
+                receita_id:
+                  type: int
+                estrelas:
+                  type: int
+      responses:
+        "201":
+          description: Avaliação Criada
+  /avaliacao/{usuario_id}/{receita_id}:
+    parameters:
+      - usuario_id: id
+        in: path
+        required: true
+        type: int
+      - receita_id: id
+        in: path
+        required: true
+        type: int
+
+    get:
+      operationId: AvaliacaoShow
+      summary: Acessar informações da Avaliacao
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  usuario_id:
+                    type: int
+                  receita_id:
+                    type: int
+                  estrelas:
+                    type: int
+        404:
+          description: Avaliacao não encontrada.
+
+    patch:
+      operationId: AvaliacaoUpdate
+      summary: Alterar informações de Avaliacao
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                estrelas:
+                  type: int
+      responses:
+        200:
+          description: OK
+        401:
+          description: Houve um erro ao alterar as informações.
+        404:
+          description: Avaliacao não encontrada.
+
+    delete:
+      operationId: AvaliacaoDestroy
+      summary: Apagar Avaliacao
+      responses:
+        200:
+          description: OK
+        404:
+          description: Avaliacao não encontrado.
+
+  /comentario:
+    get:
+      operationId: ComentarioIndex
+      summary: Retornar todos os comentários
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                minItems: 0
+                items:
+                  $ref: "#/app/models/Comentario"
+    post:
+      operationId: ComentarioStore
+      summary: Criar um novo comentário
+
+      requestedBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                usuario_id:
+                  type: int
+                receita_id:
+                  type: int
+                texto:
+                  type: string
+      responses:
+        "201":
+          description: Comentário Criado
+  /comentario/{usuario_id}/{receita_id}:
+    parameters:
+      - usuario_id: id
+        in: path
+        required: true
+        type: int
+      - receita_id: id
+        in: path
+        required: true
+        type: int
+
+    get:
+      operationId: ComentarioShow
+      summary: Acessar informações da Comentario
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  usuario_id:
+                    type: int
+                  receita_id:
+                    type: int
+                  texto:
+                    type: string
+        404:
+          description: Comentario não encontrado.
+
+    patch:
+      operationId: ComentarioUpdate
+      summary: Alterar informações de Comentario
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                texto:
+                  type: string
+      responses:
+        200:
+          description: OK
+        401:
+          description: Houve um erro ao alterar as informações.
+        404:
+          description: Comentario não encontrada.
+
+    delete:
+      operationId: ComentarioDestroy
+      summary: Apagar Comentario
+      responses:
+        200:
+          description: OK
+        404:
+          description: Comentario não encontrado.
+
+components:
+  schemas:
+    usuario:
+      type: object
+      description: Usuario do Sistema.
+      properties:
+        id:
+          type: int
+          description: id incremental gerado pelo sistema.
+          example: 1
+        nome:
+          type: string
+          description: nome do usuario
+          example: Ana
+        matricula:
+          type: int|null
+          description: matricula de usuario do IFRN
+          example: 2021001101023
+        email:
+          type: string
+          description: email do usuario
+          example: ana.julia@ifrn.edu.br
+        senha:
+          type: string
+          description: senha do usuario
+          example: senhaForte345@#
+    receita:
+      type: object
+      description: Receita Culinária
+      properties:
+        id:
+          type: int
+          description: id incremental gerado pelo sistema.
+          example: 1
+        usuario_id:
+          type: int
+          description: usuario dono da receita
+          example: 2
+        titulo:
+          type: string
+          description: titulo da receita
+          example: Frango Assado
+        ingredientes:
+          type: string
+          description: ingredientes da receita
+          example: frango, oleio, cebola, alho
+        modo_de_preparo:
+          type: string
+          description: instruções para preparar a receita
+          example: coloque o oleo na panela, depois corte a cebola e o alho
+        imagem:
+          type: file
+          description: imagem da receita
+          example: frangoassado.png
+    avaliacao:
+      type: object
+      description: Avaliação de uma receita
+      properties:
+        receita_id:
+          type: int
+          description: id da receita que pertence a avaliação
+          example: 1
+        usuario_id:
+          type: int
+          description: id do usuario que avaliou a receita
+          example: 2
+        estrelas:
+          type: int
+          enum: [1, 2, 3, 4, 5]
+          description: avaliação numérica de 1 a 5 da receita
+          example: 5
+    comentario:
+      type: object
+      description: Comentário de uma receita
+      properties:
+        receita_id:
+          type: int
+          description: id da receita que pertence a avaliação
+          example: 1
+        usuario_id:
+          type: int
+          description: id do usuario que avaliou a receita
+          example: 2
+        texto:
+          type: string
+          description: texto do conteúdo do comentário
+          example: muito boa a receita!
