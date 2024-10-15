@@ -50,6 +50,12 @@ Define os endereços que poderão ser acessados pelos usuários, para verificar 
 
 > `php artisan route:list`
 
+### Middleware
+
+Um processo que acontece antes das requisição chegar ao controle. Nesse projeto é utilizado o auth:sanctum como middleware. Proveniente do pacote Laravel/Sanctum, ele oferece um login de usuário com tokens JWT para segurança de acesso aos dados.
+
+A rota 'login' retorna ao usuário um token de acesso que deve ser utilizado com autorização. Além disso, o tipo de Accept do header é, obrigatoriamente, application/json.
+
 ## Tipos de Dados
 
 ### Usuários
