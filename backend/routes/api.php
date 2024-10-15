@@ -20,36 +20,36 @@ use App\Http\Controllers\AvaliacaoController;
 */
 
 // Laravel Sanctum (Autenticação de Usuários)
-Route::post('/register', [AuthController::class, 'register']);
-Route::post('/login', [AuthController::class, 'login']);
-
+Route::post('register/', [AuthController::class, 'register']);
+Route::post('login/', [AuthController::class, 'login'])->name('login');
 // Grupo com o Middleware auth:sanctum
-Route::middleware('auth:sanctum')->group(function() {
-    Route::post('/logout', [AuthController::class, 'logjout']);
+Route::group(['middleware' => 'auth:sanctum'], function() {
+    Route::post('logout/', [AuthController::class, 'logout']);
     // Rotas de Usuário
-    Route::get('usuario/', [UsuarioController::class, 'index']);
     Route::post('usuario/', [UsuarioController::class, 'store']);
     Route::get('usuario/{id}', [UsuarioController::class, 'show']);
-    Route::put('usuario/{id}', [UsuarioController::class, 'update']);
+    Route::patch('usuario/{id}', [UsuarioController::class, 'update']);
     Route::delete('usuario/{id}', [UsuarioController::class, 'destroy']);
     // Rotas de Receita
-    Route::get('receita/', [ReceitaController::class, 'index']);
     Route::post('receita/', [ReceitaController::class, 'store']);
     Route::get('receita/{id}', [ReceitaController::class, 'show']);
-    Route::put('receita/{id}', [ReceitaController::class, 'update']);
+    Route::patch('receita/{id}', [ReceitaController::class, 'update']);
     Route::delete('receita/{id}', [ReceitaController::class, 'destroy']);
     // Rotas dos Comentários
     Route::get('comentario/', [ComentarioController::class, 'index']);
     Route::post('comentario/', [ComentarioController::class, 'store']);
     Route::get('comentario/{usuario_id}/{post_id}', [ComentarioController::class, 'show']);
-    Route::put('comentario/{usuario_id}/{post_id}', [ComentarioController::class, 'update']);
+    Route::patch('comentario/{usuario_id}/{post_id}', [ComentarioController::class, 'update']);
     Route::delete('comentario/{usuario_id}/{post_id}', [ComentarioController::class, 'destroy']);
     // Rotas das Avaliações
     Route::get('avaliacao/', [AvaliacaoController::class, 'index']);
     Route::post('avaliacao/', [AvaliacaoController::class, 'store']);
     Route::get('avaliacao/{usuario_id}/{post_id}', [AvaliacaoController::class, 'show']);
-    Route::put('avaliacao/{usuario_id}/{post_id}', [AvaliacaoController::class, 'update']);
+    Route::patch('avaliacao/{usuario_id}/{post_id}', [AvaliacaoController::class, 'update']);
     Route::delete('avaliacao/{usuario_id}/{post_id}', [AvaliacaoController::class, 'destroy']);
 });
+
+Route::get('usuario/', [UsuarioController::class, 'index']);
+Route::get('receita/', [ReceitaController::class, 'index']);
 
 

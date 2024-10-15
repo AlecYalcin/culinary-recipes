@@ -42,7 +42,7 @@ return [
         ],
         'api' => [
             'driver' => 'sanctum',
-            'provicer' => 'usuario',
+            'provicer' => 'usuarios',
         ]
     ],
 
@@ -69,7 +69,7 @@ return [
             'model' => App\Models\User::class,
         ],
 
-        'usuario' => [
+        'usuarios' => [
             'driver' => 'eloquent',
             'model' => App\Models\Usuario::class,
         ]
