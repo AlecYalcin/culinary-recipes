@@ -27,22 +27,19 @@ Route::group(['middleware' => 'auth:sanctum'], function() {
     Route::post('logout/', [AuthController::class, 'logout']);
     // Rotas de Usuário
     Route::post('usuario/', [UsuarioController::class, 'store']);
-    Route::get('usuario/{id}', [UsuarioController::class, 'show']);
     Route::patch('usuario/{id}', [UsuarioController::class, 'update']);
     Route::delete('usuario/{id}', [UsuarioController::class, 'destroy']);
     // Rotas de Receita
     Route::post('receita/', [ReceitaController::class, 'store']);
-    Route::get('receita/{id}', [ReceitaController::class, 'show']);
     Route::patch('receita/{id}', [ReceitaController::class, 'update']);
     Route::delete('receita/{id}', [ReceitaController::class, 'destroy']);
     // Rotas dos Comentários
-    Route::get('comentario/', [ComentarioController::class, 'index']);
+
     Route::post('comentario/', [ComentarioController::class, 'store']);
     Route::get('comentario/{usuario_id}/{post_id}', [ComentarioController::class, 'show']);
     Route::patch('comentario/{usuario_id}/{post_id}', [ComentarioController::class, 'update']);
     Route::delete('comentario/{usuario_id}/{post_id}', [ComentarioController::class, 'destroy']);
     // Rotas das Avaliações
-    Route::get('avaliacao/', [AvaliacaoController::class, 'index']);
     Route::post('avaliacao/', [AvaliacaoController::class, 'store']);
     Route::get('avaliacao/{usuario_id}/{post_id}', [AvaliacaoController::class, 'show']);
     Route::patch('avaliacao/{usuario_id}/{post_id}', [AvaliacaoController::class, 'update']);
@@ -50,6 +47,12 @@ Route::group(['middleware' => 'auth:sanctum'], function() {
 });
 
 Route::get('usuario/', [UsuarioController::class, 'index']);
+Route::get('usuario/{id}', [UsuarioController::class, 'show']);
+
 Route::get('receita/', [ReceitaController::class, 'index']);
+Route::get('receita/{id}', [ReceitaController::class, 'show']);
+
+Route::get('comentario/', [ComentarioController::class, 'index']);
+Route::get('avaliacao/', [AvaliacaoController::class, 'index']);
 
 
