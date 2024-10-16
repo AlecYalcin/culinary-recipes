@@ -14,14 +14,32 @@ class ReceitaController extends Controller
 
     public function store(Request $request)
     {
+        // return Receita::create([
+        //     'usuario_id' => $request->usuario_id,
+        //     'titulo' => $request->titulo,
+        //     'ingredientes' => $request->ingredientes,
+        //     'modo_de_preparo' => $request->modo_de_preparo,
+        //     'tempo_de_preparo' => $request->tempo_de_preparo,
+        //     'imagem' => $request->file('imagem')->get()
+        // ]);   
+
+         // Verifica se a imagem foi enviada
+        if ($request->hasFile('imagem') && $request->file('imagem')->isValid()) {
+            // Salva a imagem e pega o caminho
+            $imagePath = $request->file('imagem')->store('imagens_receitas', 'public');
+        } else {
+            $imagePath = null; // ou trata de acordo com a necessidade
+        }
+
+        // Criação da receita com o caminho da imagem (ou null, caso não tenha)
         return Receita::create([
             'usuario_id' => $request->usuario_id,
             'titulo' => $request->titulo,
             'ingredientes' => $request->ingredientes,
             'modo_de_preparo' => $request->modo_de_preparo,
             'tempo_de_preparo' => $request->tempo_de_preparo,
-            'imagem' => $request->file('imagem')->get()
-        ]);   
+            'imagem' => $imagePath
+        ]);
     }
 
     public function show($id)
